@@ -8,16 +8,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-public final class NbtTagCompound extends NbtTag {
+public final class NbtTagCompound implements NbtTag {
     private final Map<String, NbtTag> value;
 
-    public NbtTagCompound(String name) {
-        super(name);
+    public NbtTagCompound() {
         value = new LinkedHashMap<>();
     }
 
-    public void add(NbtTag tag) {
-        value.put(tag.getName(), tag);
+    public void add(String name, NbtTag tag) {
+        value.put(name, tag);
     }
 
     public NbtTag get(String key) {
@@ -47,18 +46,19 @@ public final class NbtTagCompound extends NbtTag {
         while ((typeId = in.readByte()) != 0) {
             String name = in.readUTF();
 
-            NbtTag tag = NbtIO.createTag(typeId, name);
+            NbtTag tag = NbtIO.createTag(typeId);
             tag.read(in);
 
-            add(tag);
+            add(name, tag);
         }
     }
 
     @Override
     public void write(DataOutput out) throws IOException {
-        for (NbtTag tag : values()) {
+        for (Map.Entry<String, NbtTag> entry : value.entrySet()) {
+            NbtTag tag = entry.getValue();
             out.writeByte(NbtIO.getId(tag.getClass()));
-            out.writeUTF(tag.getName());
+            out.writeUTF(entry.getKey());
             tag.write(out);
         }
         out.writeByte(0); // TAG_End
@@ -68,16 +68,16 @@ public final class NbtTagCompound extends NbtTag {
     public String toString() {
         StringBuilder builder = new StringBuilder("{");
         boolean comma = false;
-        for (NbtTag tag : values()) {
+        for (Map.Entry<String, NbtTag> entry : value.entrySet()) {
             if (comma) {
                 builder.append(",");
             } else {
                 comma = true;
             }
 
-            builder.append(tag.getName());
+            builder.append(entry.getKey());
             builder.append(":");
-            builder.append(tag);
+            builder.append(entry.getValue());
         }
         builder.append("}");
 

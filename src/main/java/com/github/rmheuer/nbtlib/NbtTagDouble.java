@@ -4,16 +4,14 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagDouble extends NbtTagNumeric {
+public final class NbtTagDouble implements NbtTagNumeric {
     private double value;
 
-    public NbtTagDouble(String name) {
-        super(name);
+    public NbtTagDouble() {
         value = 0;
     }
 
-    public NbtTagDouble(String name, double value) {
-        super(name);
+    public NbtTagDouble(double value) {
         this.value = value;
     }
 

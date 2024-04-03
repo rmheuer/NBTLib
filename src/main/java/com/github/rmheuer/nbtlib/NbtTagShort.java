@@ -4,16 +4,14 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagShort extends NbtTagNumeric {
+public final class NbtTagShort implements NbtTagNumeric {
     private short value;
 
-    public NbtTagShort(String name) {
-        super(name);
+    public NbtTagShort() {
         value = 0;
     }
 
-    public NbtTagShort(String name, short value) {
-        super(name);
+    public NbtTagShort(short value) {
         this.value = value;
     }
 

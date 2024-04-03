@@ -4,16 +4,14 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagInt extends NbtTagNumeric {
+public final class NbtTagInt implements NbtTagNumeric {
     private int value;
 
-    public NbtTagInt(String name) {
-        super(name);
+    public NbtTagInt() {
         value = 0;
     }
 
-    public NbtTagInt(String name, int value) {
-        super(name);
+    public NbtTagInt(int value) {
         this.value = value;
     }
 

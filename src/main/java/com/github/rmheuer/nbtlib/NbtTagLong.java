@@ -4,16 +4,14 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagLong extends NbtTagNumeric {
+public final class NbtTagLong implements NbtTagNumeric {
     private long value;
 
-    public NbtTagLong(String name) {
-        super(name);
+    public NbtTagLong() {
         value = 0;
     }
 
-    public NbtTagLong(String name, long value) {
-        super(name);
+    public NbtTagLong(long value) {
         this.value = value;
     }
 

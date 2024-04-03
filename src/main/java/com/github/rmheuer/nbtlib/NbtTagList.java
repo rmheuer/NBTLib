@@ -7,23 +7,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public final class NbtTagList extends NbtTag implements Iterable<NbtTag> {
+public final class NbtTagList implements NbtTag, Iterable<NbtTag> {
     private final List<NbtTag> value;
     private Class<? extends NbtTag> type;
 
-    public NbtTagList(String name) {
-        super(name);
+    public NbtTagList() {
         type = null;
         value = new ArrayList<>();
     }
 
-    public NbtTagList(String name, NbtTag... value) {
-        this(name);
+    public NbtTagList(NbtTag... value) {
+        this();
         setValue(value);
     }
 
-    public NbtTagList(String name, List<NbtTag> value) {
-        this(name);
+    public NbtTagList(List<NbtTag> value) {
+        this();
         setValue(value);
     }
 
@@ -63,6 +62,10 @@ public final class NbtTagList extends NbtTag implements Iterable<NbtTag> {
         value.clear();
     }
 
+    public int size() {
+        return value.size();
+    }
+
     @Override
     public Iterator<NbtTag> iterator() {
         return value.iterator();
@@ -78,7 +81,7 @@ public final class NbtTagList extends NbtTag implements Iterable<NbtTag> {
 
         clear();
         for (int i = 0; i < length; i++) {
-            NbtTag tag = NbtIO.createTag(typeId, "");
+            NbtTag tag = NbtIO.createTag(typeId);
             tag.read(in);
 
             add(tag);

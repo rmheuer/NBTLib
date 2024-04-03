@@ -4,16 +4,14 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagIntArray extends NbtTag {
+public final class NbtTagIntArray implements NbtTag {
     private int[] value;
 
-    public NbtTagIntArray(String name) {
-        super(name);
+    public NbtTagIntArray() {
         value = new int[0];
     }
 
-    public NbtTagIntArray(String name, int... value) {
-        super(name);
+    public NbtTagIntArray(int... value) {
         this.value = value.clone();
     }
 
