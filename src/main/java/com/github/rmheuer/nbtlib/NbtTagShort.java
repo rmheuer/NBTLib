@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagShort implements NbtTagNumeric {
+public final class NbtTagShort extends NbtTagNumeric {
     private short value;
 
     public NbtTagShort() {
@@ -64,7 +64,7 @@ public final class NbtTagShort implements NbtTagNumeric {
     }
 
     @Override
-    public String toString() {
+    public String toSnbt() {
         return value + "s";
     }
 }

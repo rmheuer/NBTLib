@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagByte implements NbtTagNumeric {
+public final class NbtTagByte extends NbtTagNumeric {
     private byte value;
 
     public NbtTagByte() {
@@ -13,6 +13,10 @@ public final class NbtTagByte implements NbtTagNumeric {
 
     public NbtTagByte(byte value) {
         this.value = value;
+    }
+
+    public NbtTagByte(boolean value) {
+        this.value = (byte) (value ? 1 : 0);
     }
 
     public byte getValue() {
@@ -68,7 +72,7 @@ public final class NbtTagByte implements NbtTagNumeric {
     }
 
     @Override
-    public String toString() {
+    public String toSnbt() {
         return value + "b";
     }
 }

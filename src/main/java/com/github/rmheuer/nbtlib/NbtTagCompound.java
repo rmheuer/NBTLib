@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-public final class NbtTagCompound implements NbtTag {
+public final class NbtTagCompound extends NbtTag {
     private final Map<String, NbtTag> value;
 
     public NbtTagCompound() {
@@ -65,7 +65,7 @@ public final class NbtTagCompound implements NbtTag {
     }
 
     @Override
-    public String toString() {
+    public String toSnbt() {
         StringBuilder builder = new StringBuilder("{");
         boolean comma = false;
         for (Map.Entry<String, NbtTag> entry : value.entrySet()) {
@@ -75,9 +75,9 @@ public final class NbtTagCompound implements NbtTag {
                 comma = true;
             }
 
-            builder.append(entry.getKey());
+            builder.append(SnbtIO.quoteStringIfNeeded(entry.getKey()));
             builder.append(":");
-            builder.append(entry.getValue());
+            builder.append(entry.getValue().toSnbt());
         }
         builder.append("}");
 

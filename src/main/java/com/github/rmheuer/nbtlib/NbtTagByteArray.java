@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagByteArray implements NbtTag {
+public final class NbtTagByteArray extends NbtTag {
     private byte[] value;
 
     public NbtTagByteArray() {
@@ -45,8 +45,8 @@ public final class NbtTagByteArray implements NbtTag {
     }
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder("[b;");
+    public String toSnbt() {
+        StringBuilder builder = new StringBuilder("[B;");
         boolean comma = false;
         for (byte b : value) {
             if (comma) {
@@ -56,6 +56,7 @@ public final class NbtTagByteArray implements NbtTag {
             }
 
             builder.append(b);
+            builder.append('b');
         }
         builder.append("]");
 

@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagDouble implements NbtTagNumeric {
+public final class NbtTagDouble extends NbtTagNumeric {
     private double value;
 
     public NbtTagDouble() {
@@ -64,7 +64,7 @@ public final class NbtTagDouble implements NbtTagNumeric {
     }
 
     @Override
-    public String toString() {
-        return value + "d";
+    public String toSnbt() {
+        return value + "D";
     }
 }

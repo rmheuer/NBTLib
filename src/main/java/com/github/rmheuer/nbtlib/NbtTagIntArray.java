@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagIntArray implements NbtTag {
+public final class NbtTagIntArray extends NbtTag {
     private int[] value;
 
     public NbtTagIntArray() {
@@ -49,7 +49,7 @@ public final class NbtTagIntArray implements NbtTag {
     }
 
     @Override
-    public String toString() {
+    public String toSnbt() {
         StringBuilder builder = new StringBuilder("[I;");
         boolean comma = false;
         for (int i : value) {

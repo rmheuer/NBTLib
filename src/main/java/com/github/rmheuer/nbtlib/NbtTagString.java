@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagString implements NbtTag {
+public final class NbtTagString extends NbtTag {
     private String value;
 
     public NbtTagString() {
@@ -34,7 +34,7 @@ public final class NbtTagString implements NbtTag {
     }
 
     @Override
-    public String toString() {
-        return "\"" + value.replace("\"", "\\\"") + "\"";
+    public String toSnbt() {
+        return SnbtIO.quoteStringIfNeeded(value);
     }
 }

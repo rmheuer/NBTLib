@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public final class NbtTagList implements NbtTag, Iterable<NbtTag> {
+public final class NbtTagList extends NbtTag implements Iterable<NbtTag> {
     private final List<NbtTag> value;
     private Class<? extends NbtTag> type;
 
@@ -105,7 +105,7 @@ public final class NbtTagList implements NbtTag, Iterable<NbtTag> {
     }
 
     @Override
-    public String toString() {
+    public String toSnbt() {
         StringBuilder builder = new StringBuilder("[");
         boolean comma = false;
         for (NbtTag tag : value) {
@@ -115,7 +115,7 @@ public final class NbtTagList implements NbtTag, Iterable<NbtTag> {
                 comma = true;
             }
 
-            builder.append(tag);
+            builder.append(tag.toSnbt());
         }
         builder.append("]");
 

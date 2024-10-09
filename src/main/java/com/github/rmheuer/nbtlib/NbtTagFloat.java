@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public final class NbtTagFloat implements NbtTagNumeric {
+public final class NbtTagFloat extends NbtTagNumeric {
     private float value;
 
     public NbtTagFloat() {
@@ -64,7 +64,7 @@ public final class NbtTagFloat implements NbtTagNumeric {
     }
 
     @Override
-    public String toString() {
+    public String toSnbt() {
         return value + "f";
     }
 }
