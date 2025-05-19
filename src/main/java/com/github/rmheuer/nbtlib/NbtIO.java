@@ -32,45 +32,39 @@ public final class NbtIO {
     }
 
     /**
-     * Reads in a single tag from a DataInput.
+     * Reads in a single tag from a DataInput, in file NBT format.
      * A return value of {@code null} represents a {@code TAG_End}.
      *
      * @param in data input
      * @return NBT tag read
      * @throws IOException if an IO error occurs while reading
      */
-    public static NbtTagCompound readTag(DataInput in) throws IOException {
+    public static NbtTagCompound readTagFile(DataInput in) throws IOException {
         int typeId = in.readByte();
         if (typeId == 0) {
             return null;
         }
 
-        String name = in.readUTF();
-        NbtTag tag = createTag(typeId);
-        tag.read(in);
-
         NbtTagCompound root = new NbtTagCompound();
-        root.add(name, tag);
+        root.read(in);
 
         return root;
     }
 
     /**
-     * Writes out a single tag to a DataOutput. If the input tag is
-     * {@code null}, this will write out a {@code TAG_End}.
+     * Writes out a single tag to a DataOutput in file format. If the input
+     * tag is {@code null}, this will write out a {@code TAG_End}.
      *
      * @param tag tag to write
      * @param out data output
      * @throws IOException if an IO error occurs while writing
      */
-    public static void writeTag(NbtTag tag, DataOutput out) throws IOException {
+    public static void writeTagFile(NbtTagCompound tag, DataOutput out) throws IOException {
         if (tag == null) {
             out.writeByte(0);
             return;
         }
 
-        out.writeByte(getId(tag.getClass()));
-        out.writeUTF(""); // Root TAG_Compound
         tag.write(out);
     }
 
