@@ -33,18 +33,12 @@ public final class NbtIO {
 
     /**
      * Reads in a single tag from a DataInput, in file NBT format.
-     * A return value of {@code null} represents a {@code TAG_End}.
      *
      * @param in data input
      * @return NBT tag read
      * @throws IOException if an IO error occurs while reading
      */
     public static NbtTagCompound readTagFile(DataInput in) throws IOException {
-        int typeId = in.readByte();
-        if (typeId == 0) {
-            return null;
-        }
-
         NbtTagCompound root = new NbtTagCompound();
         root.read(in);
 
